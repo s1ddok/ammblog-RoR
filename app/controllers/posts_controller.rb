@@ -15,7 +15,7 @@ class PostsController < BaseController
 
   def destroy
     @post.destroy
-    redirect_to root_path, notice: t(:post_success_delete)
+    redirect_to :back, notice: t(:post_success_delete)
   end
 
   private
@@ -29,7 +29,7 @@ class PostsController < BaseController
   end
 
   def check_ownership
-    render status: 401 if @post.user != current_user
+    render status: 401 if @post.user != current_user and !current_user.try(:admin?)
   end
 
 end

@@ -17,7 +17,7 @@
         </ul>
       </div>
       <div class="col-md-1">
-        <% if user_signed_in? and (post.user.id == current_user.id) then %>
+        <% if user_signed_in? and ((post.user.id == current_user.id) or current_user.try(:admin?)) then %>
           <%= button_to post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" do %>
             <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
           <% end %>

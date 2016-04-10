@@ -1,0 +1,16 @@
+<% if !params[:username] %>
+	<div class="col-md-8 col-md-offset-2">
+
+		<%= simple_form_for(@post) do |f| %>
+		  <%= f.error_notification %>
+
+		    <%= f.input :text, as: :text, label: "Post", maxlength: 300 %>
+		    
+		    <div class="pull-right">
+		      <%= f.button :submit, class: "btn btn-primary", class: "btn btn-primary" %>
+		    </div>
+
+		<% end %>
+
+	</div>
+<% end %>

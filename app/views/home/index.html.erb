@@ -1,0 +1,61 @@
+<%= provide :title, t(:home_title) %>
+
+<%= render partial: 'profile_header' %>
+
+<div style="clear:both" />
+
+<% if @latest_posts %>
+
+  <% if @latest_posts.any? %>
+
+    <% unless @timeline_user %>
+      <h2><%= t :checkout_latest_posts %></h2>
+    <% end %>
+    
+    <%= render partial: 'timeline' %>
+
+    <div class="navbar-centered">
+      <%= paginate @latest_posts, :theme => 'twitter-bootstrap-3' %>
+    </div>
+
+  <% elsif %>
+
+    <br>
+    <div class="row jumbotron" >
+      <div class="col-md-12 text-center">
+        <h4>
+        <% if user_signed_in?%>
+          <% if current_user == @timeline_user %>
+            <%= t :no_posts %>
+          <% else %>
+            <%= t :no_posts_other_user, username: @timeline_user.username %>
+          <% end %>
+        <% else %>
+          <%= t :no_posts_new_user %>
+        <% end %>
+        </h4>
+      </div>
+    </div>
+
+  <% end %>
+  
+<% end %>
+
+<% unless user_signed_in? %>
+
+    <div class="row jumbotron" >
+      <div class="col-md-12 text-center">
+            
+        <%= button_to new_user_session_path, method: :get, class: "btn btn-primary" do %>
+          <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"> <%= t :nav_login %></span>
+        <% end %>
+
+        <%= button_to new_user_registration_path, method: :get, class: "btn btn-primary" do %>
+          <span class="glyphicon glyphicon glyphicon-user" aria-hidden="true"> <%= t :nav_signup %></span>
+        <% end %>
+
+      </div>
+    </div>
+
+<% end %>
+

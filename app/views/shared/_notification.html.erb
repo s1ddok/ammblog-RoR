@@ -1,0 +1,31 @@
+<% if @new_followers %>
+  <div style="padding:5px">
+  	<h4>
+
+      <li class="dropdown">
+        <a href="#" id="read-notifications" class="dropdown-toggle" data-toggle="dropdown">
+          <span id="notification-icon" class="label label-<%= @new_followers.any? ? "danger" : "default" %>">
+            <span class="glyphicon glyphicon-eye-open"></span>
+            <span id="notification-count" ><%= @new_followers.length %></span>
+          </span>
+        </a>
+        <ul class="dropdown-menu" style="padding:10px; max-height:300px; overflow:auto" >
+        	<li class="center-inline">
+            <% if @new_followers.any? %>
+            	<h5><%= t :new_followers %></h5>
+            <% else %>
+              <h5><%= t :no_new_followers %></h5>
+            <% end %>
+        	</li>
+        <% for new_follower in @new_followers do %>
+        	<li>
+  	        <%= link_to user_timeline_path(new_follower.username) do %>
+  	        <%= new_follower.username %>
+        		<% end %>
+        	</li>
+        <% end %>
+        </ul>
+      </li>
+  	</h4>
+  </div>
+<% end %>

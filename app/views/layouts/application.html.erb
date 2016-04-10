@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= yield :title %></title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header class="navbar navbar-default navbar-fixed-top" role="banner">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          </button>
+          <a href="/" class="navbar-brand"><%= t :nav_home %></a>
+        </div>
+
+        <%= render partial: 'shared/nav' %>
+
+      </div>
+    </header>
+    <div id="masthead">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <h1><%= t :home_title %>
+            <p class="lead"><%= t :home_subtitle %></p>
+            </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel">
+            <div class="panel-body">
+
+              <% if notice || alert then %>
+
+                <div class="alert alert-info" role="alert">
+                   <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                   <%= notice || alert %>
+                </div>
+
+              <% elsif flash[:error] then %>
+
+                <div class="alert alert-danger" role="alert">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="sr-only">Error:</span>
+                  <%= flash[:error] %>
+                </div>
+
+              <% end %>
+
+              <%= yield %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+          Made for my school project during RoR course at AMM VSU.
+    </footer>
+  </body>
+</html>

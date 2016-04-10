@@ -1,0 +1,38 @@
+<% provide:title, t(:search_users) %>
+
+<%= simple_form_for :user, url: search_path, method: :get, html: {class: 'form-vertical' } do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :username, required: true, autofocus: true, input_html: { value: @last_query  } %>
+  <div class="pull-right">
+    <%= f.button :submit, "Search user", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<div style="clear:both" /><br/>
+
+
+<% if @users.try(:empty?) %>
+
+  <div class="row jumbotron">
+    <div class="col-md-12 text-center ">
+      <h4><%= t :no_result %></h4>
+    </div>
+  </div>
+
+<% elsif @users %>
+
+  <% @users.each do |user| %>
+
+    <div class="row jumbotron">
+      <div class="vcenter">
+        <h2><%= link_to user.username, user_timeline_path(user.username) %></h2>
+      </div>
+    </div>
+
+  <% end %>
+
+  <div class="navbar-centered">
+    <%= paginate @users, :theme => 'twitter-bootstrap-3' %>
+  </div>
+
+<% end %>

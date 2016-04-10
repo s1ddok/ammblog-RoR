@@ -1,0 +1,35 @@
+<div class="row">
+  <% if @timeline_user then %>
+    <div class="col-md-2">
+      <div class="text-center" style="padding-top:10px">
+        <span class="label label-success"><%= @timeline_user.followers.count %> <%= t :followers %></span>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <h2><%= @timeline_user.username %></h2>
+      <% if user_signed_in? then %>
+        <% if @timeline_user != current_user then %>
+          <% if @is_following then %>
+            <%= button_to relation_path(@timeline_user.id), method: :delete, data: { confirm: t(:confirmation) }, class: "btn btn-primary" do %>
+              <span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"> <%= t :unfollow %></span>
+            <% end %>
+          <% else%>
+            <%= button_to relations_path(followed_id: @timeline_user.id), method: :post, data: { confirm: t(:confirmation) }, class: "btn btn-primary" do %>
+              <span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"> <%= t :follow %></span>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-md-4 pull-right jumbotron followers_container">
+      <div class="text-center" style="padding-bottom:5px">
+        <span class="label label-success">
+          <%= "#{t :user_is_following}#{@timeline_user.following.count} #{t :users}" %>
+        </span>
+      </div>
+    </div>
+    <div style="clear:both" />
+    <%= render partial: 'posts/form' %>
+    <div style="clear:both" />
+  <% end %>
+</div>

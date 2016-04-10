@@ -1,0 +1,29 @@
+
+<div style="clear:both"></div><br/><br/>
+
+<% @latest_posts.each do |post| %>
+
+<div class="row jumbotron">
+  <div class="col-md-8 col-md-offset-2">
+      <% if !user_signed_in? and !@timeline_user %>
+        <!-- display avatar maybe? -->
+      <% end %>
+      <div class="col-md-10">
+        <p><%= post.text %></p>
+        <ul class="list-inline">
+          <li>
+            <%= post.when %> <%= t :ago %>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-1">
+        <% if user_signed_in? and (post.user.id == current_user.id) then %>
+          <%= button_to post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" do %>
+            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+</div>
+
+<% end %>

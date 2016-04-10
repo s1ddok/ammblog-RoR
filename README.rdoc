@@ -1,28 +1,18 @@
-== README
+== ammblog-RoR
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is my first and probably last application on Ruby on Rails for my school project during RoR course at AMM VSU. I'm unlikely to maintain it, but it may help you to get started with RoR with working examples of devise usage, as well as RSpec test coverage.
 
-Things you may want to cover:
+Installation:
 
-* Ruby version
+Go to console and type:
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+```
+git clone https://github.com/s1ddok/ammblog-RoR
+cd ammblog-ror
+bundle install
+bundle exec rake db:create
+bundle exec rake db:schema:load
+bundle exec rake db:migrate
+rails s
+```
+And then access [http://localhost:3000/](http://localhost:3000/) on your browser. (Chrome preferably)

@@ -3,7 +3,12 @@
     <div class="col-md-2">
       <div class="text-center" style="padding-top:10px">
         <span class="label label-success"><%= @timeline_user.followers.count %> <%= t :followers %></span>
+        <br/>
+        <span class="label label-success">
+          <%= "#{@timeline_user.following.count} #{t :user_is_following}" %>
+        </span>
       </div>
+
     </div>
     <div class="col-md-2">
       <h2><%= @timeline_user.username %></h2>
@@ -20,13 +25,6 @@
           <% end %>
         <% end %>
       <% end %>
-    </div>
-    <div class="col-md-4 pull-right jumbotron followers_container">
-      <div class="text-center" style="padding-bottom:5px">
-        <span class="label label-success">
-          <%= "#{t :user_is_following}#{@timeline_user.following.count} #{t :users}" %>
-        </span>
-      </div>
     </div>
     <div style="clear:both" />
     <%= render partial: 'posts/form' %>

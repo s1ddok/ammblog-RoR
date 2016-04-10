@@ -9,7 +9,6 @@ class HomeController < BaseController
       @timeline_user = User.find_by_username(params[:username])
 
       if @timeline_user then
-
         # get the specified user timeline
         @latest_posts = Post.all_by_username(params[:username]).page(params[:page])
 
@@ -24,7 +23,7 @@ class HomeController < BaseController
 
       # if not, just show our timeline
       # if the user is not logged in, and no user has been specified just show latest posts
-      @latest_posts = (user_signed_in? ? current_user.posts : Post.all).page(params[:page])
+      @latest_posts = (user_signed_in? ? Post.where("user_id IN (?) OR user_id = ?", current_user.following.select(:id), current_user.id) : Post.all).page(params[:page])
 
     end
 
@@ -35,9 +34,9 @@ class HomeController < BaseController
     @post = Post.new
     @timeline_user = current_user
 
-    if params[:username] && @timeline_user then
-      redirect_to root_path if @timeline_user.username == params[:username]
-    end
+    #if params[:username] && @timeline_user then
+    #  redirect_to root_path if @timeline_user.username == params[:username]
+    #end
 
    end
 

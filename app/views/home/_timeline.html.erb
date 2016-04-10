@@ -12,7 +12,7 @@
         <p><%= post.text %></p>
         <ul class="list-inline">
           <li>
-            <%= post.when %> <%= t :ago %>
+            <%= link_to post.user.username, user_timeline_path(post.user.username) %> @ <%= post.when %> <%= t :ago %>
           </li>
         </ul>
       </div>

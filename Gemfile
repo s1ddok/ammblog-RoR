@@ -48,8 +48,6 @@ gem 'populator'
 
 gem 'faker'
 
-gem 'image_suckr'
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -57,18 +55,11 @@ group :development, :test do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
-  gem 'guard'
-
 	gem 'rb-fsevent'
-
-	gem 'guard-livereload'
 
   gem 'rspec-rails'
 
   gem 'factory_girl_rails'
-
-  gem 'guard-rspec'
-
 end
 
 group :production do
@@ -76,7 +67,3 @@ group :production do
   gem 'rails_12factor'
 
 end
-
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

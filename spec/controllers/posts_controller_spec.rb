@@ -25,6 +25,7 @@ describe PostsController, "logged user" do
       }.to change(Post, :count).by(-1)
 
       expect(flash[:notice]).to eq I18n.t(:post_success_delete)
+      #we redirect to root_path because we have no http referer
       expect(subject).to redirect_to(root_path)
     end
 
